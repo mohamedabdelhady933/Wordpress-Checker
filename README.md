@@ -17,6 +17,7 @@
       - '{{BaseURL}}/wp-config.php.inc'
       - '{{BaseURL}}/wp-config.php.swp'
       - '{{BaseURL}}/wp-config.php.html'
+      - '{{BaseURL}}/wp-config.php.zip'
       - '{{BaseURL}}/wp-config-backup.txt'
       - '{{BaseURL}}/wp-config.php.save'
       - '{{BaseURL}}/wp-config.php-backup'
