@@ -21,6 +21,7 @@
       - '{{BaseURL}}/wp-config-backup.txt'
       - '{{BaseURL}}/wp-config.php.save'
       - '{{BaseURL}}/wp-config.php-backup'
+      - '{{BaseURL}}/wp-config.php.backup'
       - '{{BaseURL}}/wp-config.php.orig'
       - '{{BaseURL}}/wp-config.php_orig'
       - '{{BaseURL}}/wp-config.php.original'
