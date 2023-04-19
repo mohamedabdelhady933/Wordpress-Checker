@@ -26,3 +26,8 @@
       - '{{BaseURL}}/wp-config.php_orig'
       - '{{BaseURL}}/wp-config.php.original'
       - '{{BaseURL}}/_wpeprivate/config.json'
+
+
+# Run wpscan
+
+# Check if registration is enabled
