@@ -1,6 +1,8 @@
 import requests
 import sys
 import os
+import colorama
+from colorama import Fore
 
 cases={
     "wp-config.php~",
@@ -31,30 +33,28 @@ cases={
 
 
 if(len(sys.argv)==1):
-    print("\n [i] Usage : python {} https://doamin.com/".format(sys.argv[0]))
+    print(Fore.YELLOW ,"\n [i] Usage : python {} https://doamin.com/".format(sys.argv[0]))
 else:
-    print("\n [+] Starting Check Wordpress")
-    print("\n [+] Check Config file")
+    print(Fore.GREEN ,"\n [+] Starting Check Wordpress")
+    print(Fore.GREEN ,"\n [+] Check Config file")
     counter=0
     for i in cases:
         URL = sys.argv[1]+i
-        
+
         response = requests.get(URL)
         if("define" in response.text ) and ( response.status_code != 403) and ( response.status_code != 404):
-            print("\n [+] The Following URL works : " + URL)
+            print(Fore.GREEN ,"\n [+] The Following URL works : " + URL)
             counter=+1
 
     if(counter == 0):
-        print("\n [-] No Result Found")
-    
-    print("\n [+] Starting Scan Wordpress")
+        print(Fore.RED ,"\n [-] No Result Found")
+
+    print(Fore.GREEN ,"\n [+] Starting Scan Wordpress")
     os.system("sudo wpscan --url {} -e --random-user-agent --no-update ".format(sys.argv[1]))
 
-    print("\n [+] Starting check registeration enabled")
-    res = requests.get(sys.argv[1]+"wp-register.php")
-    if ("User registration is currently not allowed" in res.text) and (res.status_code == 302) and (res.status_code == 301):
-        print("\n [-] Registration Not enable")
+    print(Fore.GREEN ,"\n [+] Starting check registeration enabled")
+    res = requests.get(sys.argv[1]+"wp-register.php" , allow_redirects=False)
+    if ("User registration is currently not allowed" in res.text) and (res.status_code == 302) and (res.status_code == 404) and (res.status_code == 301):
+        print(Fore.RED,"\n [-] Registration Not enable")
     else:
-        print("\n [+] Registration Enabled")
-
-
+        print(Fore.GREEN,"\n [+] Registration Enabled")
