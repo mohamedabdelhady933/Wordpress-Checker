@@ -48,11 +48,11 @@ else:
         print("\n [-] No Result Found")
     
     print("\n [+] Starting Scan Wordpress")
-    os.system("sudo wpscan --url {} -e --random-user-agent ".format(sys.argv[1]))
+    os.system("sudo wpscan --url {} -e --random-user-agent --no-update ".format(sys.argv[1]))
 
     print("\n [+] Starting check registeration enabled")
     res = requests.get(sys.argv[1]+"wp-register.php")
-    if ("User registration is currently not allowed" in res.text) and (res.status_code == 302):
+    if ("User registration is currently not allowed" in res.text) and (res.status_code == 302) and (res.status_code == 301):
         print("\n [-] Registration Not enable")
     else:
         print("\n [+] Registration Enabled")
