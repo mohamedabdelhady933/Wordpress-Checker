@@ -48,9 +48,9 @@ def check_wordpress(url, api_key=None):
         print(Fore.RED, "\n [-] No Result Found")
     print(Fore.GREEN, "\n [+] Starting Scan Wordpress")
     if api_key:
-        os.system("sudo wpscan --url {} -e --random-user-agent --no-update --api-token {} ".format(url, api_key))
+        os.system("wpscan --url {} -e --random-user-agent --no-update --api-token {} ".format(url, api_key))
     else:
-        os.system("sudo wpscan --url {} -e --random-user-agent --no-update ".format(url))
+        os.system("wpscan --url {} -e --random-user-agent --no-update ".format(url))
 
     print(Fore.GREEN, "\n [+] Starting check registration enabled")
     res = requests.get(url + "/wp-register.php", allow_redirects=False)
