@@ -4,6 +4,7 @@ import os
 import colorama
 import argparse
 from colorama import Fore
+from urllib.parse import urljoin
 
 cases={
     "/wp-config.php~",
@@ -39,7 +40,7 @@ def check_wordpress(url, api_key=None):
     print(Fore.GREEN, "\n [+] Check Config file")
     counter = 0
     for i in cases:
-        URL = url + i
+        URL = urljoin(url, i)
         response = requests.get(URL)
         if("define" in response.text ) and ( response.status_code != 403) and ( response.status_code != 404):
             print(Fore.GREEN, "\n [+] The Following URL works : " + URL)
@@ -68,11 +69,11 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.url:
-        url = url = args.url[:-1] if args.url.endswith('/') else args.url
+        url = args.url
         check_wordpress(url,args.apiKey)
     elif args.file:
         with open(args.file, 'r') as f:
             urls = f.readlines()
         for url in urls:
-            url = url.strip()[:-1] if url.strip().endswith('/') else url.strip()
+            url = url.strip()
             check_wordpress(url.strip(),args.apiKey)
