@@ -9,6 +9,7 @@ from urllib.parse import urljoin
 cases={
     "/wp-config.php~",
     "/*wp-config.php",
+    "/wp-config.php.bk",
     "/wp-config.php.tmp",
     "/.wp-config.php.swp",
     "/wp-config-sample.php",
